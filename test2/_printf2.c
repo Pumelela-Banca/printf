@@ -7,7 +7,6 @@ int _printf(const char *format, ...) {
     int i = 0;
     int printedChar = 0;
     int value;
-    int (*f)(va_list);
     va_list args;
     va_start(args, format);
 
@@ -29,25 +28,16 @@ int _printf(const char *format, ...) {
         if (format[i] =='%')
         {
             //use specific checker function for value type
-            f = specCheck(&format[i + 1]);
-            if (f != NULL ){
-                value = f(args);
-                printedChar = printedChar + value;
-                i = i + 2;
-                continue;
-            }
-
-            if ( format[i + 1] == '\0'){
+            switch (format[i + 1])
+            {
+            case 'c':
+                dosplayc()
                 break;
-            }
-
-            if (format [i + 1] != '\0'){
-                value = write(1, &format[i], 1);
-                printedChar = printedChar + value;
-                i = i + 2;
+            
+            default:
+                i++;
                 continue;
             }
-        }
 
     }
     //return character count as int

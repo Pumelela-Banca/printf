@@ -13,3 +13,16 @@ int _displayc(char c)
 {
 	return (write(1, &c, 1));
 }
+/*
+void main(void)
+{
+	int i;
+	char *cals;
+
+	cals = "1234567";
+	for (i = 0; cals[i] != '\0'; i++)
+	{
+		_displayc(cals[i]);
+	}
+}
+*/
