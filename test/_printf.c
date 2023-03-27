@@ -10,20 +10,12 @@
  * Return: number of characters in format
 */
 
-<<<<<<< HEAD
-int _printf(const char *format, ...)
-{
-    
-    return (_countchar(format));
-=======
 int _printf(const char *format, ...) {
-    int i = 0;
-    int value, just;
+    int i, value, just;
     va_list args;
-    va_start(args, format);
 
-    just = 0;
-//Print each character
+    va_start(args, format);
+    just = 0; value = 0; i = 0;
     while (format[i]  != '\0')
     {
         if (just == 1)
@@ -32,29 +24,22 @@ int _printf(const char *format, ...) {
             i++;
             continue;
         }
-        if (format[i] == '\0')
-        {
-            break;
-        }
-        //increase character count
         if (format[i]!='%')
         {
-            value = write(1, &format[i], 1);
+            value += _displayc(format[i]);
             i = i + 1;
-            continue;
         }
         if (format[i] =='%')
         {
-            //use specific checker function for value type
             switch (format[i + 1])
             {
             case 'c':
-                _displayc(va_arg(args, int));
+                value += _displayc(va_arg(args, int));
                 i++;
                 just = 1;
                 break;
             case 's':
-                print_string(va_arg(args, char *));
+                value += print_string(va_arg(args, char *));
                 i++;
                 just = 1;
                 break;
@@ -69,9 +54,11 @@ int _printf(const char *format, ...) {
                 just = 1;
                 break;
             case '%':
-                _displayc('%');
+                value += _displayc('%');
                 i++;
                 just = 1;
+                break;
+            case '\0':
                 break;
             default:
                 i++;
@@ -79,7 +66,6 @@ int _printf(const char *format, ...) {
             }
         }
     }
-    //return character count as int
-    return (i);
->>>>>>> 39553962a33ffa91a0abd47e1ded3cbc14f91a12
+    va_end(args);
+    return (value);
 }
