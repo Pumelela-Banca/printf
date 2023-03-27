@@ -22,6 +22,5 @@ int (*specCheck(const char*format))(va_list)
         if (*(myArray[i].t) == *format){
             return(myArray[i].f);
         }
-
     }
 }

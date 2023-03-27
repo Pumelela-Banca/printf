@@ -1,28 +1,24 @@
-#include "main.h"
 #include <stdarg.h>
- 
+#include <stdio.h>
+#include <unistd.h>
+#include "display.c"
+#include "print_num.c"
+#include "print_string.c"
+#include "main.h"
 
-/**
- * _printf - simulate printf from standard library
- * 
- * @format: string to  be passed in
- * 
- * Return: number of characters in format
-*/
-
-<<<<<<< HEAD
-int _printf(const char *format, ...)
-{
-    
-    return (_countchar(format));
-=======
 int _printf(const char *format, ...) {
     int i = 0;
-    int value, just;
+    int printedChar = 0;
+    int value;
+    int just;
     va_list args;
     va_start(args, format);
 
     just = 0;
+    if (format == NULL)
+    {
+        return (-1);
+    }
 //Print each character
     while (format[i]  != '\0')
     {
@@ -36,10 +32,12 @@ int _printf(const char *format, ...) {
         {
             break;
         }
+        
         //increase character count
         if (format[i]!='%')
         {
             value = write(1, &format[i], 1);
+            printedChar = printedChar + value;
             i = i + 1;
             continue;
         }
@@ -81,5 +79,19 @@ int _printf(const char *format, ...) {
     }
     //return character count as int
     return (i);
->>>>>>> 39553962a33ffa91a0abd47e1ded3cbc14f91a12
+}
+
+
+void main(void)
+{
+    int f;
+    char *sister;
+    
+    sister = "betty";
+
+    f = _printf("Hi my nam%c is Tom", 'e');
+    _printf("I am %d years old", f);
+    _printf("my favorite siter is %s", sister);
+    _printf("I love to  cook %% %%");
+
 }

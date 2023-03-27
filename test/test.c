@@ -11,7 +11,7 @@ int main()
 	for (ll = 0; ll < 5; ll++)
 	{
 		vv /= 0.01;
-		printf("%f\n", vv);
+		printf("%c\n", 'h');
 	}
 	//_countchar("123456");
 	return (0);
