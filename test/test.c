@@ -6,13 +6,15 @@ int main()
 {
 	int ll;
 	float vv;
+	int h;
 	
-	vv = 31.5461456;
-	for (ll = 0; ll < 5; ll++)
+	vv = 35;
+	for (ll = 138; ll < 140; ll++)
 	{
-		vv /= 0.01;
-		printf("%c\n", 'h');
+		//vv /= 0.01;
+		h = printf("--%d--", ll);
 	}
+	printf("%d", h);
 	//_countchar("123456");
 	return (0);
 }
