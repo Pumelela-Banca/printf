@@ -58,8 +58,6 @@ int _printf(const char *format, ...) {
                 i++;
                 just = 1;
                 break;
-            case '\0':
-                break;
             default:
                 i++;
                 break;
